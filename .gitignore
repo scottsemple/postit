@@ -34,4 +34,8 @@ tmp
 .yardoc
 _yardoc
 doc/
+
+# OS X files
+.DS_Store
+
 >>>>>>> 65e1d94b6431f030bca6468ad2b1ebe5b5f605fe
