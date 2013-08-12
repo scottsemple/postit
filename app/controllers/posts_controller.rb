@@ -18,6 +18,8 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    # TODO: Double-check edit actions when back in Boston. Anything here? Or no,
+    #    because it's only a GET request of the edit form?
   end
 
   # POST /posts
@@ -25,28 +27,25 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
 
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @post }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post.save
+      redirect_to root_path, notice: "Your post was created successfully."
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post.update(post_params)
+      redirect_to root_path, notice: "Your post was edited successfully."
+    else
+      render :edit
     end
   end
+
+  private
+    def post_params
+      params.require(:post).permit(:url, :title, :description)
+    end
 end

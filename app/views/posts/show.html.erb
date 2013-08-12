@@ -1,4 +1,12 @@
 <h3>Posts</h3>
 <h4><%= @post.title %></h4>
-<h5><%= @post.description %></h5>
+<strong><%= @post.description %></strong>
 <small><%= @post.url %></small>
+
+<h5>Comments:</h5>
+
+<ul>
+  <% @post.comments.each do |comment| %>
+    <li><%= comment.content %></li>
+  <% end %>
+</ul>
