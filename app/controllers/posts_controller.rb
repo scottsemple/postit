@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:show, :edit, :update]
+
   # GET /posts
   # GET /posts.json
   def index
@@ -8,7 +10,6 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @post = Post.find(params[:id])
   end
 
   # GET /posts/new
@@ -18,8 +19,6 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    # TODO: Double-check edit actions when back in Boston. Anything here? Or no,
-    #    because it's only a GET request of the edit form?
   end
 
   # POST /posts
@@ -47,5 +46,9 @@ class PostsController < ApplicationController
   private
     def post_params
       params.require(:post).permit(:url, :title, :description)
+    end
+
+    def set_post
+      @post = Post.find(params[:id])
     end
 end
