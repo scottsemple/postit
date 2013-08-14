@@ -4,7 +4,9 @@
 <% @posts.each do |post| %>
   <li>
     <%= link_to post.title, post_path(post) %>
-    <small><%= link_to '(Edit)', edit_post_path(post) %></small>
+    <% if logged_in? %>
+      <small><%= link_to '(Edit)', edit_post_path(post) %></small>
+    <% end %>
   </li>
 <% end %>
 </ul>
