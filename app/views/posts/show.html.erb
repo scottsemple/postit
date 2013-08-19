@@ -1,7 +1,15 @@
-<h3>Posts</h3>
 <h4><%= @post.title %></h4>
 <strong><%= @post.description %></strong>
 <small><%= @post.url %></small>
+
+<% if logged_in? %>
+  <%= render 'shared/errors', object: @comment %>
+  <%= form_for [@post, @comment] do |f| %>
+    <%= f.text_area :content %>
+    <br />
+    <%= f.submit 'Add a comment', class: 'btn' %>
+  <% end %>
+<% end %>
 
 <h5>Comments:</h5>
 
