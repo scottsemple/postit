@@ -15,6 +15,6 @@
 
 <ul>
   <% @post.comments.each do |comment| %>
-    <li><%= comment.content %></li>
+    <li><%= comment.content %> by <%= comment.creator.username %></li>
   <% end %>
 </ul>

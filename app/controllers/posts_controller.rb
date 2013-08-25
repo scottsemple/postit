@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update]
-  before_action :require_user, only: [:new, :create, :edit, :update]
+  before_action :require_user, only: [:new, :create, :edit, :update, :vote]
   before_action :require_creator, only: [:edit, :update]
 
   # GET /posts
@@ -12,7 +12,6 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @post = Post.find(params[:id])
     @comment = Comment.new
   end
 
@@ -29,6 +28,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    @post.creator = current_user
 
     if @post.save
       redirect_to root_path, notice: "Your post was created successfully."
@@ -45,6 +45,12 @@ class PostsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def vote
+    Vote.create(voteable: @post, creator: current_user, vote: params[:vote])
+    flash[:notice] = 'Your vote was counted. '
+    redirect_to posts_path
   end
 
   private
