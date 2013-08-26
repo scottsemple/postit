@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update]
+  before_action :set_post, only: [:show, :edit, :update, :vote]
   before_action :require_user, only: [:new, :create, :edit, :update, :vote]
   before_action :require_creator, only: [:edit, :update]
 
@@ -49,8 +49,8 @@ class PostsController < ApplicationController
 
   def vote
     Vote.create(voteable: @post, creator: current_user, vote: params[:vote])
-    flash[:notice] = 'Your vote was counted. '
-    redirect_to posts_path
+    flash[:notice] = 'Your vote was counted.'
+    redirect_to :back
   end
 
   private

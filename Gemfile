@@ -22,6 +22,7 @@ group :development do
   gem 'quiet_assets'
   gem 'pry'
   gem 'sqlite3'
+  gem 'better_errors'
 end
 
 group :production do

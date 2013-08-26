@@ -15,6 +15,15 @@
 
 <ul>
   <% @post.comments.each do |comment| %>
-    <li><%= comment.content %> by <%= comment.creator.username %></li>
+    <li>
+      <% if logged_in? %>
+        (
+        <%= link_to '+', vote_post_comment_path(@post.id, comment.id, vote: true), method: 'post' %>
+        <%= comment.total_votes %>
+        <%= link_to '-', vote_post_comment_path(@post.id, comment.id, vote: false), method: 'post' %>
+        )
+        <%= comment.content %> by <%= comment.creator.username %>
+      <% end %>
+    </li>
   <% end %>
 </ul>
