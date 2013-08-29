@@ -18,9 +18,12 @@
     <li>
       <% if logged_in? %>
         (
-        <%= link_to '+', vote_post_comment_path(@post.id, comment.id, vote: true), method: 'post' %>
-        <%= comment.total_votes %>
-        <%= link_to '-', vote_post_comment_path(@post.id, comment.id, vote: false), method: 'post' %>
+        <%= link_to '+', vote_post_comment_path(@post.id, comment.id,
+          vote: true), method: 'post', remote: true %>
+        <span id="comment_<%= comment.id %>_votes"><%= comment.total_votes %>
+          </span>
+        <%= link_to '-', vote_post_comment_path(@post.id, comment.id,
+          vote: false), method: 'post', remote: true %>
         )
         <%= comment.content %> by <%= comment.creator.username %>
       <% end %>
