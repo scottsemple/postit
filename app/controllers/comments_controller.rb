@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
       end
 
       format.js do
-        render :vote_comments
+        render 'posts/vote_comments'
       end
     end
   end
