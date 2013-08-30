@@ -13,9 +13,11 @@
       )
     <% end %>
     <%= link_to post.title, post_path(post) %>
-    <% if logged_in? %>
-      <small><%= link_to '(Edit)', edit_post_path(post) %></small>
-    <% end %>
+    <small>
+      [<%= link_to 'link', fix_url(post.url) %>]
+    </small>
+    <br />
+    <small>Posted at: <%= display_datetime(post.created_at) %></small>
   </li>
 <% end %>
 </ul>
