@@ -1,6 +1,6 @@
 <% if @vote.errors.any? %>
   $("#messages").html('').slideUp();
-  $("#messages").html("<%= @vote.errors.full_messages.join(', ') %>").slideDown();
+  $("#messages").html("<div class='alert alert-error'><%= @vote.errors.full_messages.join(', ') %></div>").slideDown();
 <% else %>
   $("#post_<%= @post.id %>_votes").html("<%= @post.total_votes %>")
 <% end %>
