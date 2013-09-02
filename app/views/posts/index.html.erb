@@ -17,7 +17,13 @@
       [<%= link_to 'link', fix_url(post.url) %>]
     </small>
     <br />
-    <small>Posted at: <%= display_datetime(post.created_at) %></small>
+    <small>Posted at:
+      <% if logged_in? %>
+        <%= display_datetime(post.created_at.in_time_zone(current_user.time_zone)) %>
+      <% else %>
+        <%= display_datetime(post.created_at) %>
+      <% end %>
+    </small>
   </li>
 <% end %>
 </ul>
