@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include GenerateSlug
+
   has_many :posts
   has_many :comments
   has_many :votes
@@ -9,10 +11,6 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: {minimum: 3}
 
   after_validation :generate_slug
-
-  def generate_slug
-    self.slug = self.username.gsub(' ', '-').downcase
-  end
 
   def to_param
     self.slug

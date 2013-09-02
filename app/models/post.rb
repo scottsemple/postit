@@ -12,10 +12,6 @@ class Post < ActiveRecord::Base
 
   after_validation :generate_slug
 
-#  def generate_slug
-#    self.slug = self.title.gsub(' ', '-').downcase
-#  end
-
   def to_param
     self.slug
   end
