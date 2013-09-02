@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def access_denied
-    flash[:error] = "You don't have sufficient permissions to do that."
+    flash[:error] = "Access denied."
     redirect_to root_path
   end
 

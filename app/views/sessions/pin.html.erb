@@ -1,0 +1,12 @@
+<%= render 'shared/header', header: 'Please enter your PIN' %>
+
+<p>Your account has been secured with a PIN that you will receive via text
+  message. Once you receive it, enter the PIN below to sign in.</p>
+
+<%= form_tag '/pin' do %>
+  <div class="control-group">
+    <%= label_tag :pin, 'PIN' %>
+    <%= text_field_tag :pin, params[:pin] || '' %>
+  </div>
+  <%= submit_tag 'Unlock your account', class: "btn btn-success" %>
+<% end %>
