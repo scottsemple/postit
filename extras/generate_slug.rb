@@ -9,11 +9,11 @@ module GenerateSlug
 
   module InstanceMethods
     def generate_slug(base)
-      if base.exists?(title)
+      if base.respond_to?(:title)
         self.slug = self.title.gsub(' ', '-').downcase
-      elsif base.exists?(username)
+      elsif base.respond_to?(:username)
         self.slug = self.username.gsub(' ', '-').downcase
-      elsif base.exists?(name)
+      elsif base.respond_to?(:name)
         self.slug = self.name.gsub(' ', '-').downcase
       end
     end
