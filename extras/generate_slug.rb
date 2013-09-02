@@ -21,7 +21,6 @@ module GenerateSlug
 
   module ClassMethods
     def my_class_method
-      puts 'Test slug module'
     end
   end
 end
