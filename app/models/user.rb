@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
 
     msg = "Your Postit verification code is #{self.pin}"
     account = client.account
-    message = account.sms.messages.create({:from => '6479311254',
+    message = account.sms.messages.create({:from => '6475600330',
       :to => '+14036780507', :body => msg})
   end
 
